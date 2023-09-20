@@ -91,6 +91,11 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        Log.d("GameFragement", "GameView,odel destroyed!")
+    }
+
     /*
      * Re-initializes the game data to restart the game.
      */
