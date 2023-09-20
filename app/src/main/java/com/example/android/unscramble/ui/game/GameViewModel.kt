@@ -61,6 +61,7 @@ class GameViewModel : ViewModel() {
     }
 
     // List of words used in the game
+
     private var wordsList: MutableList<String> = mutableListOf()
     private lateinit var currentWord: String
 
