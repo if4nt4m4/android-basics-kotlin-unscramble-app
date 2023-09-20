@@ -17,6 +17,7 @@
 package com.example.android.unscramble.ui.game
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class GameFragment : Fragment() {
     ): View {
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
+        Log.d("GameFragment", "GameFragment created/re-created!")
         return binding.root
     }
 
@@ -65,6 +67,7 @@ class GameFragment : Fragment() {
         binding.skip.setOnClickListener { onSkipWord() }
         if (viewModel.isGameOver()) { showFinalScoreDialog() }
     }
+
 
     /*
     * Checks the user's word, and updates the score accordingly.
