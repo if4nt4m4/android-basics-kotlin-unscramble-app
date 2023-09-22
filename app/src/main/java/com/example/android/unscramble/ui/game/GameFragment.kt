@@ -33,10 +33,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class GameFragment : Fragment() {
 
     private val viewModel: GameViewModel by viewModels()
-    private var score = 0
-    private var currentWordCount = 0
-    private var currentScrambledWord = "test"
-
 
     // Binding object instance with access to the views in the game_fragment.xml layout
     private lateinit var binding: GameFragmentBinding
@@ -49,7 +45,9 @@ class GameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout XML file and return a binding object instance
         binding = GameFragmentBinding.inflate(inflater, container, false)
+        Log.d("GameFragment", "GameFragment created/re-created!")
         Log.d("GameFragment", "Word: ${viewModel.currentScrambledWord} " +
                 "Score: ${viewModel.score} WordCount: ${viewModel.currentWordCount}")
         return binding.root
@@ -65,31 +63,32 @@ class GameFragment : Fragment() {
         updateNextWordOnScreen()
         binding.score.text = getString(R.string.score, 0)
         binding.wordCount.text = getString(
-                R.string.word_count, 0, MAX_NO_OF_WORDS)
+            R.string.word_count, 0, MAX_NO_OF_WORDS)
     }
 
     /*
     * Checks the user's word, and updates the score accordingly.
     * Displays the next scrambled word.
+    * After the last word, the user is shown a Dialog with the final score.
     */
     private fun onSubmitWord() {
         val playerWord = binding.textInputEditText.text.toString()
 
-        if(viewModel.isUserWordCorrect(playerWord)) {
+        if (viewModel.isUserWordCorrect(playerWord)) {
+            setErrorTextField(false)
             if (viewModel.nextWord()) {
                 updateNextWordOnScreen()
             } else {
                 showFinalScoreDialog()
             }
-        }else {
+        } else {
             setErrorTextField(true)
         }
     }
 
     /*
-     * Skips the current word without changing the score.
-     * Increases the word count.
-     */
+    * Skips the current word without changing the score.
+    */
     private fun onSkipWord() {
         if (viewModel.nextWord()) {
             setErrorTextField(false)
