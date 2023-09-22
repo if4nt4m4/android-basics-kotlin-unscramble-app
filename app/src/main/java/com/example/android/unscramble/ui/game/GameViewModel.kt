@@ -47,6 +47,10 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    private fun increaseScore() {
+        _score += SCORE_INCREASE
+    }
+
     fun nextWord(): Boolean{
         return if (currentWordCount < MAX_NO_OF_WORDS) {
             getNextWord()
