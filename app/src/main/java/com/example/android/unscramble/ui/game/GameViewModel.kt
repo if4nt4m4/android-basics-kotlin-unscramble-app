@@ -109,4 +109,5 @@ class GameViewModel : ViewModel(){
             true
         } else false
     }
+    fun isGameOver() = isGameOver
 }
