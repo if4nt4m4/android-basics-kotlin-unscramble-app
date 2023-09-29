@@ -21,7 +21,7 @@ class GameViewModel : ViewModel(){
     val currentWordCount: LiveData<Int>
         get() = _currentWordCount
 
-    private val _currentScrambledWord=MutableLiveData<String>()
+    private val _currentScrambledWord=MutableLiveData<String>("")
     val currentScrambledWord: LiveData<Spannable> = Transformations.map(_currentScrambledWord) {
         if (it == null) {
             SpannableString("")
