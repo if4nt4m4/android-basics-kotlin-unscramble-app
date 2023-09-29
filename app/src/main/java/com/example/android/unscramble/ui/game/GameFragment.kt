@@ -105,11 +105,7 @@ class GameFragment : Fragment() {
     /*
      * Gets a random word for the list of words and shuffles the letters in it.
      */
-    private fun getNextScrambledWord(): String {
-        val tempWord = allWordsList.random().toCharArray()
-        tempWord.shuffle()
-        return String(tempWord)
-    }
+
 
     /*
     * Creates and shows an AlertDialog with the final score.
@@ -145,10 +141,6 @@ class GameFragment : Fragment() {
         activity?.finish()
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("GameFragment", "GameFragment destroyed!")
-    }
 
     /*
     * Sets and resets the text field error status.
