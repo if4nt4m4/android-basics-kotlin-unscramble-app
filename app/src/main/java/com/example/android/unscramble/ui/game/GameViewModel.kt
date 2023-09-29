@@ -45,7 +45,6 @@ class GameViewModel : ViewModel(){
     private var isGameOver: Boolean = false
 
     init {
-        Log.d("GameFragment", "GameViewModel created!")
         getNextWord()
     }
 
